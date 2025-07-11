@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Date Utilities Toolbox</title>
+    <link rel="stylesheet" href="./styles.css" />
+</head>
+
+<body>
+    <h1>🧰 Date Utilities Toolbox</h1>
+    <div class="tabs">
+        <div class="tab active" onclick="showTool(0)">Date Diff</div>
+        <div class="tab" onclick="showTool(1)">Timezone</div>
+        <div class="tab" onclick="showTool(2)">Countdown</div>
+        <div class="tab" onclick="showTool(3)">Age</div>
+        <div class="tab" onclick="showTool(4)">Timestamp</div>
+    </div>
+    <div class="toolbox">
+        <div class="tool active">
+            <!-- Date Difference Tool -->
+            <h2>📆 Date Difference</h2>
+            <label for="date1">Start Date:</label>
+            <input type="datetime-local" id="date1" />
+            <label for="date2">End Date:</label>
+            <input type="datetime-local" id="date2" />
+            <label for="unit">Unit:</label>
+            <select id="unit">
+                <option value="days">Days</option>
+                <option value="hours">Hours</option>
+                <option value="minutes">Minutes</option>
+                <option value="seconds">Seconds</option>
+            </select>
+            <button onclick="calculateDifference()">Calculate</button>
+            <div class="result" id="diffResult"></div>
+        </div>
+        <div class="tool">
+            <!-- Timezone Converter Tool -->
+            <h2>🌍 Timezone Converter</h2>
+            <label for="sourceDate">Source Date & Time:</label>
+            <input type="datetime-local" id="sourceDate" />
+            <label for="fromTZ">From Timezone:</label>
+            <select id="fromTZ">
+                <option value="UTC">UTC</option>
+                <option value="America/New_York">New York</option>
+                <option value="Europe/London">London</option>
+                <option value="Asia/Tokyo">Tokyo</option>
+                <option value="America/Los_Angeles">Los Angeles</option>
+            </select>
+            <label for="toTZ">To Timezone:</label>
+            <select id="toTZ">
+                <option value="UTC">UTC</option>
+                <option value="America/New_York">New York</option>
+                <option value="Europe/London">London</option>
+                <option value="Asia/Tokyo">Tokyo</option>
+                <option value="America/Los_Angeles">Los Angeles</option>
+            </select>
+            <button onclick="convertTimezone()">Convert</button>
+            <div class="result" id="convertResult"></div>
+        </div>
+        <div class="tool">
+            <!-- Countdown Timer Tool -->
+            <h2>⏳ Countdown Timer</h2>
+            <label for="countdownDate">Target Date & Time:</label>
+            <input type="datetime-local" id="countdownDate" />
+            <button id="countdownControl" onclick="toggleCountdown()">Start Countdown</button>
+            <button id="resetCountdown" style="display:none" onclick="resetCountdown()">Reset</button>
+            <div class="result" id="countdownResult"></div>
+        </div>
+        <div class="tool">
+            <!-- Age Calculator Tool -->
+            <h2>🎂 Age Calculator</h2>
+            <label for="birthDate">Your Birth Date:</label>
+            <input type="date" id="birthDate" />
+            <button onclick="calculateAge()">Calculate Age</button>
+            <div class="result" id="ageResult"></div>
+        </div>
+        <div class="tool">
+            <!-- Timestamp Converter Tool -->
+            <h2>📅 Timestamp Converter</h2>
+            <label for="unixTimestamp">UNIX Timestamp (seconds):</label>
+            <input type="number" id="unixTimestamp" />
+            <button onclick="convertTimestamp()">Convert to Date</button>
+            <div class="result" id="timestampResult"></div>
+        </div>
+    </div>
+    <script async src="./scripts.js"></script>
+</body>
+
+</html>
