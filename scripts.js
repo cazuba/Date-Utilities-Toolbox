@@ -1,10 +1,15 @@
+const tabNames = ["datediff", "timezone", "countdown", "age", "timestamp"];
+
 function showTool(index) {
-    document.querySelectorAll('.tab').forEach((tab, i) => {
-        tab.classList.toggle('active', i === index);
-    });
-    document.querySelectorAll('.tool').forEach((tool, i) => {
-        tool.classList.toggle('active', i === index);
-    });
+    const tabs = document.querySelectorAll('.tab');
+    const tools = document.querySelectorAll('.tool');
+
+    tabs.forEach((tab, i) => tab.classList.toggle('active', i === index));
+    tools.forEach((tool, i) => tool.classList.toggle('active', i === index));
+
+    if (tabNames[index]) {
+        window.location.hash = tabNames[index];
+    }
 }
 
 function calculateDifference() {
@@ -49,7 +54,6 @@ let countdownInterval = null;
 function toggleCountdown() {
     const btn = document.getElementById("countdownControl");
     const resetBtn = document.getElementById("resetCountdown");
-    const output = document.getElementById("countdownResult");
 
     if (countdownState === 'stopped') {
         countdownTarget = new Date(document.getElementById("countdownDate").value).getTime();
@@ -127,3 +131,20 @@ function convertTimestamp() {
     const date = new Date(ts * 1000);
     document.getElementById("timestampResult").textContent = `Date: ${date.toLocaleString()}`;
 }
+
+// New functionality: Show tab based on URL hash
+function showToolByHash() {
+    const hash = window.location.hash.replace('#', '').toLowerCase();
+    const tabs = document.querySelectorAll('.tab');
+    const tools = document.querySelectorAll('.tool');
+
+
+    const index = tabNames.indexOf(hash);
+    if (index >= 0) {
+        tabs.forEach((tab, i) => tab.classList.toggle('active', i === index));
+        tools.forEach((tool, i) => tool.classList.toggle('active', i === index));
+    }
+}
+
+window.addEventListener('DOMContentLoaded', showToolByHash);
+window.addEventListener('hashchange', showToolByHash);
